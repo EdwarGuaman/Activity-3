@@ -22,9 +22,15 @@ function mostrar(){
     let actual=primero;
     while(actual!=null){
 
-        console.log(actual.valor);
+        //document.getElementById("lista").innerHTML=actual.valor;
+        
+        document.getElementById("lista").innerHTML+="<li>"+ actual.valor+"</li>";
+
+
+        
         actual=actual.siguiente;
     }
+    
 
 }
 
@@ -34,12 +40,11 @@ function eliminar(){
 
 
 
-agregarElemento(1);
-agregarElemento(2);
-agregarElemento(10);
-agregarElemento(20);
-mostrar();
 
+
+
+
+/*
 
 //PILAS
 class NodoPila{
@@ -131,3 +136,4 @@ class Cola{
     }
 
 }
+*/
