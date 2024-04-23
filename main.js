@@ -236,7 +236,6 @@ class Grafo{
     }
 
     hallarDistancia(valor1,valor2){
-       
         let nodo1=this.buscarNodo(valor1);
         let nodo2=this.buscarNodo(valor2);
 
@@ -270,7 +269,7 @@ mygrafo.agregarNodo("Bogota");
 mygrafo.agregarNodo("Cali");
 mygrafo.agregarNodo("Medellin");
 mygrafo.agregarNodo("Cartagena");
-
+mygrafo.agregarNodo("Bucaramanga");
 mygrafo.agregarNodo("Ibague");
 
 mygrafo.agregarArista("Bogota", "Medellin",300);
@@ -281,5 +280,11 @@ mygrafo.agregarArista("Bogota", "Ibague", 1000);
 console.log(mygrafo);
 
 
-console.log(mygrafo.hallarDistancia("Ibague","Cartagena"));
+if(mygrafo.buscarArista("Ibague","Bucaramanga")!=null){
+    console.log(mygrafo.hallarDistancia("Ibague","Bucaramanga"));
+} else{
+    console.log("No existe rutas");
+}
+
+
 
