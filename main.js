@@ -1,3 +1,4 @@
+/*
 //ARBOLES
 
 class Nodo{
@@ -167,3 +168,95 @@ myarbol.agregarElemento(15);
 console.log(myarbol.buscarenOrden());
 console.log(myarbol.buscarenPreOrden());
 console.log(myarbol.buscarenPostOrden());
+
+*/
+
+
+
+//GRAFOS
+
+class Nodo{
+
+    constructor (valor){
+
+        this.valor=valor;
+        this.adyacentes=[];
+        this.valoresAristas=[];
+
+    }
+}
+
+class Grafo{
+
+    constructor(){
+        this.nodos=[];
+    }
+
+    //agregar nodo
+    agregarNodo(valor){
+
+        let nodo=new Nodo(valor);
+        this.nodos.push(nodo);
+    }
+
+    //agregar arista relacion de nodos
+
+    agregarArista(valor1,valor2,valorArista){
+        let nodo1=this.buscarNodo(valor1);
+        let nodo2=this.buscarNodo(valor2);
+        nodo1.adyacentes.push(nodo2);
+        //nodo2.adyacentes.push("nodo1");
+        nodo1.valoresAristas.push(valorArista);
+        //nodo2.valoresAristas.push(valorArista);
+    }
+
+    // buscar nodo
+    buscarNodo(valor){
+
+        for(let i=0; i<this.nodos.length-1;i ++){
+
+            if(this.nodos[i].valor==valor){
+                return this.nodos[i];
+            }
+        }
+        return null;
+
+    }
+
+    //buscarArista
+    buscarArista(valor1,valor2){
+        let nodo1=this.buscarNodo(valor1);
+        // let nodo2=this.buscarNodo(valor2);
+        for(let i=0;i<nodo1.adyacentes.length;i++){
+            if(nodo1.adyacentes[i].valor==valor2){
+                return nodo1.valoresAristas[i];
+            }           
+        }
+        return null;
+    }
+
+
+
+}
+
+
+
+let mygrafo= new Grafo;
+
+mygrafo.agregarNodo("Bogota");
+mygrafo.agregarNodo("Cali");
+mygrafo.agregarNodo("Medellin");
+
+mygrafo.agregarArista("Bogota", "Medellin",200);
+//mygrafo.agregarAristas("Bogota", "Cali", 200);
+
+console.log(mygrafo);
+/*
+if(mygrafo.buscarArista("Bogota", "Medellin") !=null){
+
+        console.log("La arista existe con un valor de " +mygrafo.buscarArista("Bogota", "Medellin"));
+}
+else{
+    console.log("la arista no existe");
+}
+*/
