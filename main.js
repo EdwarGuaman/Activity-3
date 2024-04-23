@@ -203,17 +203,17 @@ class Grafo{
 
     agregarArista(valor1,valor2,valorArista){
         let nodo1=this.buscarNodo(valor1);
-        let nodo2=this.buscarNodo(valor2);
+        let nodo2= this.buscarNodo(valor2);
         nodo1.adyacentes.push(nodo2);
-        //nodo2.adyacentes.push("nodo1");
+        nodo2.adyacentes.push(nodo1);
         nodo1.valoresAristas.push(valorArista);
-        //nodo2.valoresAristas.push(valorArista);
+        nodo2.valoresAristas.push(valorArista);
     }
 
     // buscar nodo
     buscarNodo(valor){
 
-        for(let i=0; i<this.nodos.length-1;i ++){
+        for(let i=0; i<this.nodos.length;i ++){
 
             if(this.nodos[i].valor==valor){
                 return this.nodos[i];
@@ -227,7 +227,7 @@ class Grafo{
     buscarArista(valor1,valor2){
         let nodo1=this.buscarNodo(valor1);
         // let nodo2=this.buscarNodo(valor2);
-        for(let i=0;i<nodo1.adyacentes.length;i++){
+        for(let i=0; i<nodo1.adyacentes.length;i ++){
             if(nodo1.adyacentes[i].valor==valor2){
                 return nodo1.valoresAristas[i];
             }           
@@ -235,6 +235,29 @@ class Grafo{
         return null;
     }
 
+    hallarDistancia(valor1,valor2){
+       
+        let nodo1=this.buscarNodo(valor1);
+        let nodo2=this.buscarNodo(valor2);
+
+        for(let i=0; i<nodo1.adyacentes.length;i++){
+
+            for(let j=0; j<nodo2.adyacentes.length;j++){
+
+                if(nodo1.adyacentes[i]==nodo2.adyacentes[j]){
+                    console.log("no existe la ruta pero hay Ruta alterna por "+nodo1.adyacentes[i].valor);
+                    console.log("con un costo de :" + (nodo1.valoresAristas[i]+nodo2.valoresAristas[i]));
+                }
+
+            }
+
+
+        }
+
+        
+
+
+    }
 
 
 }
@@ -246,17 +269,17 @@ let mygrafo= new Grafo;
 mygrafo.agregarNodo("Bogota");
 mygrafo.agregarNodo("Cali");
 mygrafo.agregarNodo("Medellin");
+mygrafo.agregarNodo("Cartagena");
 
-mygrafo.agregarArista("Bogota", "Medellin",200);
-//mygrafo.agregarAristas("Bogota", "Cali", 200);
+mygrafo.agregarNodo("Ibague");
+
+mygrafo.agregarArista("Bogota", "Medellin",300);
+mygrafo.agregarArista("Bogota", "Cali", 200);
+mygrafo.agregarArista("Bogota", "Cartagena", 8000);
+mygrafo.agregarArista("Bogota", "Ibague", 1000);
 
 console.log(mygrafo);
-/*
-if(mygrafo.buscarArista("Bogota", "Medellin") !=null){
 
-        console.log("La arista existe con un valor de " +mygrafo.buscarArista("Bogota", "Medellin"));
-}
-else{
-    console.log("la arista no existe");
-}
-*/
+
+console.log(mygrafo.hallarDistancia("Ibague","Cartagena"));
+
